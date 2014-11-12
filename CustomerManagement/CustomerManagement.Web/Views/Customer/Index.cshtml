@@ -1,0 +1,34 @@
+﻿@model CustomerManagement.Web.Models.CustomerCollection
+@{
+    ViewBag.Title = "Customers";
+}
+@Styles.Render("~/Content/Table.css")
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>Shows the list of customers</h2>
+</hgroup>
+
+<table class="bordered">
+<tr>
+    <th>ID</th>
+    <th>First Name</th>
+    <th>Middle Name</th>
+    <th>Last Name</th>
+    <th>Address</th>
+    <th>Mobile No</th>    
+</tr> 
+
+@foreach (var item in Model) {
+
+<tr>
+    <td>@Html.ActionLink(item.Id.ToString(), "Edit", new { id = item.Id }, null)</td>
+    <td>@item.FirstName</td>
+    <td>@item.MiddleName</td>
+    <td>@item.LastName</td>
+    <td>@item.Address</td>
+    <td>@item.MobileNo</td>
+</tr>
+
+}
+
+</table>
