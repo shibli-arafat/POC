@@ -74,12 +74,12 @@ namespace CustomerManagement.Web.Controllers
         // POST: /Customer/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Customer customer)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                customer.Id = _Customers.CreateId();
+                _Customers.Add(customer);
                 return RedirectToAction("Index");
             }
             catch

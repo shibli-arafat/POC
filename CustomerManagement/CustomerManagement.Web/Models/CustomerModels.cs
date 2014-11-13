@@ -33,5 +33,18 @@ namespace CustomerManagement.Web.Models
             this.RemoveAll(x => x.Id == customer.Id);
             this.Add(customer);
         }
+
+        internal int CreateId()
+        {
+            int id = 1;
+            foreach (Customer customer in this)
+            {
+                if (customer.Id > id)
+                {
+                    id = customer.Id;
+                }
+            }
+            return id + 1;
+        }
     }
 }
