@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project name="Deploy" default="deploy">
+
+  <property name="Environment" value="${environment::get-variable('GO_ENVIRONMENT_NAME')}" />
+
+  <!--<property name="Environment" value="Staging" />-->
+
+  <echo message="${Environment}"></echo>
+
+  <choose>
+    <when test="${Environment=='Staging'}">
+      <property name="DeployDestination" value="\\172.22.227.177\e$\" />
+    </when>
+    <when test="${Environment=='UAT'}">
+      <property name="DeployDestination" value="\\172.22.227.174\e$\" />
+    </when>
+    <when test="${Environment=='Production'}">
+      <property name="DeployDestination" value="\\172.22.225.50\e$\,\\172.22.225.20\e$\" />
+    </when>
+    <when test="${Environment=='Mainline'}">
+      <property name="DeployDestination" value="\\152.146.162.75\c$\" />
+    </when>
+  </choose>
+
+
+  <target name="deploy">
+
+    <property name="DeployDestination" value="\\152.146.162.75\c$" />
+    <property name="CurrentDirectory" value="${directory::get-current-directory()}" />
+    <property name="ParentDirectory" value="${project::get-base-directory()}"/>
+
+    <copy todir="${DeployDestination}\webs\CustomerManagement">
+      <fileset basedir="${CurrentDirectory}">
+        <include name="**/*" />
+      </fileset>
+    </copy>
+
+    <echo message="${DeployDestination}webs" ></echo>
+    <echo message="${ParentDirectory}"></echo>
+  </target>
+
+</project>
