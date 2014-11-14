@@ -67,6 +67,7 @@ namespace CustomerManagement.Web.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.Message = "Customer";
             return View();
         }
 
